@@ -100,6 +100,8 @@ Extrait (log) :
 | `YT_LIMIT_RATE` | limite débit | vide = off |
 | `YT_GEO_BYPASS_COUNTRY` | geo-bypass-country | ex `FR` |
 
+---
+
 ## 4bis) Options CLI (override du `.env`)
 
 Le script accepte des options en ligne de commande pour surcharger certaines variables `.env`.
@@ -113,6 +115,24 @@ Exemple :
 ```bash
 cd /path/to/audious/scan
 ./download_youtube_playlist.sh -c cookies.txt
+```
+
+> ℹ️ Ici, `-c` est une **option du script** `download_youtube_playlist.sh`.  
+> En interne, le script transmet ce fichier à `yt-dlp` via `--cookies <fichier>`.
+
+#### 🍒 Mini-cerise — Obtenir un fichier `cookies.txt`
+
+Dans la pratique, le plus simple est d’exporter les cookies depuis votre navigateur via une extension dédiée (format **Netscape**), puis de placer le fichier quelque part de stable :
+
+- macOS (exemple) : `~/.config/yt/cookies.txt`
+- Linux (exemple) : `/home/ubuntu/.config/yt/cookies.txt`
+
+Bonnes pratiques :
+- ne committez **jamais** ce fichier (ajoutez-le au `.gitignore`)
+- limitez son accès (`chmod 600 cookies.txt`)
+- si ça “débloque” une session, évitez de le partager (il peut contenir des tokens de session)
+
+---
 
 ## 5) Les 2 modes : `DOWNLOAD_ONLY`
 
@@ -128,7 +148,7 @@ Exemple :
 
 ```bash
 cd /path/to/audious/scan
-DOWNLOAD_ONLY=1 STAGING_DIR="$PWD/staging" ./download_youtube_playlist.sh
+DOWNLOAD_ONLY=1 STAGING_DIR="$PWD/staging" ./download_youtube_playlist.sh -c cookies.txt
 ```
 
 ### ✅ Mode B — Download **+ import** (ex: serveur)
@@ -144,7 +164,7 @@ Exemple :
 
 ```bash
 cd /home/ubuntu/audious/scan
-DOWNLOAD_ONLY=0 ./download_youtube_playlist.sh
+DOWNLOAD_ONLY=0 ./download_youtube_playlist.sh -c /home/ubuntu/.config/yt/cookies.txt
 ```
 
 ---
@@ -178,16 +198,16 @@ Pendant le retry, il passe `RETRY_CONTEXT=1` :
 ## 8) Astuces d’exploitation
 
 ### A) “Download sur une autre machine → Sync serveur → Import serveur”
- 
--Si vous téléchargez sur une autre machine , vous pouvez ensuite synchroniser vers le serveur puis importer.
+
 `sync_to_server.sh` n’a d’intérêt **que si** vous exécutez `download_youtube_playlist.sh` depuis **une autre machine** que le serveur Audious
-+(donc sans accès à la base / sans import direct).
-+Dans ce cas, utilisez `DOWNLOAD_ONLY=1` sur la machine de download, puis synchronisez le `STAGING_DIR` vers le serveur pour lancer l’import.
+(donc sans accès à la base / sans import direct).
 
-👉 Si vous exécutez `download_youtube_playlist.sh` **directement sur le serveur Audious** (avec accès DB) et `DOWNLOAD_ONLY=0`,
-+alors `sync_to_server.sh` est inutile : le script télécharge puis appelle `import.php` localement.
+Dans ce cas :
+1) utilisez `DOWNLOAD_ONLY=1` sur la machine de download (ex: Mac)  
+2) synchronisez le `STAGING_DIR` vers le serveur  
+3) lancez l’import sur le serveur (qui, lui, a accès à la DB)
 
-Si vous téléchargez sur une autre machine (mode A), vous pouvez ensuite synchroniser vers le serveur puis importer.
+👉 Si vous exécutez `download_youtube_playlist.sh` **directement sur le serveur Audious** (avec accès DB) et `DOWNLOAD_ONLY=0`, alors `sync_to_server.sh` est inutile : le script télécharge puis appelle `import.php` localement.
 
 #### Exemple `sync_to_server.sh` (optionnel)
 
@@ -226,6 +246,87 @@ Ensuite, selon votre outil, vous pouvez itérer sur la colonne URL / ID pour ali
 
 ---
 
+## 🧪 Exemples réels (sorties console)
+
+### A) Download sur une autre machine (ex: Mac) — avec cookies (`-c`) et sans import
+
+Commande :
+
+```bash
+zentoo@Mac scan % ./download_youtube_playlist.sh -c youtube.com_cookies.txt
+```
+
+Sortie (extrait) :
+
+```text
+[INFO] Loaded env from /Users/zentoo/Sites/Audious/scan/../.env
+[2025-12-02 09:13:57] [INFO] DOWNLOAD_ONLY=1 -> skip php/import.php preflight.
+[2025-12-02 09:13:57] [INFO] === AUDIOUS YT PLAYLIST DOWNLOAD ===
+[2025-12-02 09:13:57] [INFO] STAGING_DIR: /Users/zentoo/Sites/Audious/scan/staging
+[2025-12-02 09:13:57] [INFO] AUDIO_DIR  : /Users/zentoo/Desktop/music
+[2025-12-02 09:13:57] [INFO] Import PHP : /Users/zentoo/Sites/Audious/scan/import.php
+[2025-12-02 09:13:57] [INFO] DOWNLOAD_ONLY: 1
+[2025-12-02 09:13:57] [INFO] Aucune URL en quarantaine.
+[2025-12-02 09:13:57] [INFO] Fetching playlist: https://www.youtube.com/playlist?list=PLRNBxrpsyAbgjzesTeITdK_4SswRD1dTL
+[2025-12-02 09:14:01] [INFO] IDs prêts dans download_youtube_playlist.txt
+[2025-12-02 09:14:01] [INFO] Processing: https://www.youtube.com/watch?v=m4EIGPHK-KQ
+[2025-12-02 09:20:26] [INFO] DOWNLOAD-ONLY: fichier téléchargé dans STAGING_DIR, aucun import lancé.
+[2025-12-02 09:20:26] [INFO] Processing: https://www.youtube.com/watch?v=J4qgLUsjZoE
+[2025-12-02 09:23:39] [INFO] DOWNLOAD-ONLY: fichier téléchargé dans STAGING_DIR, aucun import lancé.
+[2025-12-02 09:23:39] [INFO] Processing: https://www.youtube.com/watch?v=seXa0JEOklw
+[2025-12-02 09:25:51] [INFO] DOWNLOAD-ONLY: fichier téléchargé dans STAGING_DIR, aucun import lancé.
+[2025-12-02 09:25:51] [INFO] Processing: https://www.youtube.com/watch?v=vvDuQmaMqac
+[2025-12-02 09:32:23] [INFO] DOWNLOAD-ONLY: fichier téléchargé dans STAGING_DIR, aucun import lancé.
+[2025-12-02 09:32:23] [INFO] Processing: https://www.youtube.com/watch?v=CYW3qAtbiSg
+[2025-12-02 09:38:24] [INFO] DOWNLOAD-ONLY: fichier téléchargé dans STAGING_DIR, aucun import lancé.
+[2025-12-02 09:38:24] [INFO] === DONE ===
+```
+
+### B) Sync vers le serveur Audious (utile uniquement si vous avez téléchargé ailleurs)
+
+Commande :
+
+```bash
+zentoo@Mac scan % ./sync_to_server.sh
+```
+
+Sortie (extrait) :
+
+```text
+[2025-12-02 09:39:33] [INFO] LOCAL_ROOT        = /Users/zentoo/Sites/Audious
+[2025-12-02 09:39:33] [INFO] REMOTE_HOST       = ubuntu@audious.dev
+[2025-12-02 09:39:33] [INFO] REMOTE_ROOT       = /home/ubuntu/audious
+[2025-12-02 09:39:33] [INFO] REMOTE_SOURCE_DIR = /home/ubuntu/source
+[2025-12-02 09:39:33] [INFO] STAGING_DIR       = /Users/zentoo/Sites/Audious/scan/staging
+[2025-12-02 09:39:33] [INFO] PROCESSED_LOG     = /Users/zentoo/Sites/Audious/scan/download_youtube_playlist_processed.log
+[2025-12-02 09:39:33] [INFO] BLOCKED_LOG       = /Users/zentoo/Sites/Audious/scan/download_youtube_playlist_blocked.log
+[2025-12-02 09:39:33] [INFO] Sync fichiers d'état vers ubuntu@audious.dev:/home/ubuntu/audious/scan/
+Transfer starting: 2 files
+download_youtube_playlist_blocked.log
+download_youtube_playlist_processed.log
+
+sent 640 bytes  received 358 bytes  17789 bytes/sec
+total size is 34056  speedup is 34,12
+[2025-12-02 09:39:36] [INFO] Sync des fichiers audio :
+[2025-12-02 09:39:36] [INFO]   /Users/zentoo/Sites/Audious/scan/staging/ -> ubuntu@audious.dev:/home/ubuntu/source/
+Transfer starting: 8 files
+./
+CYW3qAtbiSg.mp3
+J4qgLUsjZoE.mp3
+V9NhncU5_CE.mp3
+m4EIGPHK-KQ.mp3
+seXa0JEOklw.mp3
+uhhyQKNasXo.mp3
+vvDuQmaMqac.mp3
+
+sent 621831068 bytes  received 180 bytes  5053069 bytes/sec
+total size is 624573916  speedup is 1,00
+[2025-12-02 09:41:42] [INFO] Nettoyage des répertoires vides dans /Users/zentoo/Sites/Audious/scan/staging
+[2025-12-02 09:41:42] [INFO] Sync terminé.
+```
+
+---
+
 ## 9) Exemple minimal de `.env` (scan/.env)
 
 ```env
@@ -255,7 +356,7 @@ DOWNLOAD_ONLY=0
   → mettez un staging séparé (recommandé et plus safe).
 
 - **Beaucoup de `blocked` / anti-bot**  
-  → essayez avec des cookies (`YOUTUBE_COOKIES`) et/ou ajustez `YT_SLEEP_INTERVAL`.
+  → essayez avec des cookies (`YOUTUBE_COOKIES` / `COOKIE_FILE` ou `-c cookies.txt`) et/ou ajustez `YT_SLEEP_INTERVAL`.
 
 - **429 Too Many Requests**  
   → le script tente un retry sans proxy ; sinon, laissez refroidir + augmentez les sleeps.
