@@ -12,8 +12,6 @@
 > **Audious** est une plateforme **d’auto‑hébergement de bibliothèque audio** minimaliste, rapide et orientée “product”.  
 > Elle permet de créer votre propre service d’écoute – strictement **privé** ou **ouvert à d’autres utilisateurs** (amis, communauté, intranet…) – pour organiser, taguer et lire vos fichiers audio, via une interface web au design **cyber‑néon**.
 
-Base URL (exemple) : `https://audious.dev/`
-
 ⚠️ **Important** : Audious ne fournit pas de contenu. Vous êtes responsable de n’importer et diffuser que des fichiers pour lesquels vous disposez des droits et/ou autorisations nécessaires.
 
 ---
@@ -38,6 +36,9 @@ Le **code source Audious** est **propriétaire** (dépôt privé) et n’est pas
 
 - Contrats de réponse JSON (attendus par le front)  
   👉 [`API_CONTRACTS.md`](./API_CONTRACTS.md)
+
+- Outillage **personnel / optionnel** qui ne fait pas partie du cœur “API/Frontend” d’Audious. 
+  👉 [`YOUTUBE.md`](./YOUTUBE.md)
 
 - Marque / identité  
   👉 [`TRADEMARKS.md`](./TRADEMARKS.md)
