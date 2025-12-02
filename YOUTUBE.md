@@ -100,7 +100,19 @@ Extrait (log) :
 | `YT_LIMIT_RATE` | limite débit | vide = off |
 | `YT_GEO_BYPASS_COUNTRY` | geo-bypass-country | ex `FR` |
 
----
+## 4bis) Options CLI (override du `.env`)
+
+Le script accepte des options en ligne de commande pour surcharger certaines variables `.env`.
+
+### `-c <cookies.txt>` — Cookies YouTube (recommandé si anti-bot)
+
+Permet de fournir un fichier de cookies **Netscape** et de forcer son utilisation, équivalent à définir `COOKIE_FILE` / `YOUTUBE_COOKIES`.
+
+Exemple :
+
+```bash
+cd /path/to/audious/scan
+./download_youtube_playlist.sh -c cookies.txt
 
 ## 5) Les 2 modes : `DOWNLOAD_ONLY`
 
