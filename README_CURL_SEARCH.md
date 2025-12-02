@@ -1,4 +1,4 @@
-# 🎧 `CURL_SEARCH.md`
+# 🎧 `README_CURL_SEARCH`
 
 Commandes `curl` pour interagir avec **`public/api/search.php`** d’Audious : recherche texte, filtres de tags, scopes, tri, shuffle déterministe, etc.
 
