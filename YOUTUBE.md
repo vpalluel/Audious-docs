@@ -163,11 +163,19 @@ Pendant le retry, il passe `RETRY_CONTEXT=1` :
 
 ---
 
-## 8) Astuces d’exploitation (recommandées)
+## 8) Astuces d’exploitation
 
-### A) “Download sur Mac → Sync serveur → Import serveur”
+### A) “Download sur une autre machine → Sync serveur → Import serveur”
+ 
+-Si vous téléchargez sur une autre machine , vous pouvez ensuite synchroniser vers le serveur puis importer.
+`sync_to_server.sh` n’a d’intérêt **que si** vous exécutez `download_youtube_playlist.sh` depuis **une autre machine** que le serveur Audious
++(donc sans accès à la base / sans import direct).
++Dans ce cas, utilisez `DOWNLOAD_ONLY=1` sur la machine de download, puis synchronisez le `STAGING_DIR` vers le serveur pour lancer l’import.
 
-Si vous téléchargez sur Mac (mode A), vous pouvez ensuite synchroniser vers le serveur puis importer.
+👉 Si vous exécutez `download_youtube_playlist.sh` **directement sur le serveur Audious** (avec accès DB) et `DOWNLOAD_ONLY=0`,
++alors `sync_to_server.sh` est inutile : le script télécharge puis appelle `import.php` localement.
+
+Si vous téléchargez sur une autre machine (mode A), vous pouvez ensuite synchroniser vers le serveur puis importer.
 
 #### Exemple `sync_to_server.sh` (optionnel)
 
