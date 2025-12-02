@@ -181,6 +181,9 @@ Le script maintient plusieurs logs :
 | `download_youtube_playlist_copyright.log` | URLs bloquées copyright (définitif) |
 | `scan/.downloads.log` | archive yt-dlp (évite de re-télécharger) |
 
+> ℹ️ **Important :** `download_youtube_playlist_processed.log` sert de **tampon** (état local) pour savoir ce qui a déjà été traité/téléchargé et éviter les re-downloads inutiles.  
+> Si vous **supprimez** ce fichier, le script considérera que **rien n’a été traité** et tentera de **tout télécharger à nouveau** (selon la playlist courante et vos autres mécanismes d’archive).
+
 ---
 
 ## 7) Quarantaine & retry automatique
