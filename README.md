@@ -37,7 +37,7 @@ Le **code source Audious** est **propriétaire** (dépôt privé) et n’est pas
 - Contrats de réponse JSON (attendus par le front)  
   👉 [`API_CONTRACTS.md`](./API_CONTRACTS.md)
 
-- Outillage **personnel / optionnel** qui ne fait pas partie du cœur “API/Frontend” d’Audious. 
+- Outillage **personnel / optionnel** qui ne fait pas partie du cœur “API/Frontend” d’Audious.  
   👉 [`YOUTUBE.md`](./YOUTUBE.md)
 
 - Marque / identité  
