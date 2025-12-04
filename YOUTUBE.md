@@ -262,27 +262,23 @@ zentoo@Mac scan % ./download_youtube_playlist.sh -c youtube.com_cookies.txt
 Sortie (extrait) :
 
 ```text
+zentoo@Mac scan % ./download_youtube_playlist.sh -c youtube.com_cookies.txt
 [INFO] Loaded env from /Users/zentoo/Sites/Audious/scan/../.env
-[2025-12-02 09:13:57] [INFO] DOWNLOAD_ONLY=1 -> skip php/import.php preflight.
-[2025-12-02 09:13:57] [INFO] === AUDIOUS YT PLAYLIST DOWNLOAD ===
-[2025-12-02 09:13:57] [INFO] STAGING_DIR: /Users/zentoo/Sites/Audious/scan/staging
-[2025-12-02 09:13:57] [INFO] AUDIO_DIR  : /Users/zentoo/Desktop/music
-[2025-12-02 09:13:57] [INFO] Import PHP : /Users/zentoo/Sites/Audious/scan/import.php
-[2025-12-02 09:13:57] [INFO] DOWNLOAD_ONLY: 1
-[2025-12-02 09:13:57] [INFO] Aucune URL en quarantaine.
-[2025-12-02 09:13:57] [INFO] Fetching playlist: https://www.youtube.com/playlist?list=PLRNBxrpsyAbgjzesTeITdK_4SswRD1dTL
-[2025-12-02 09:14:01] [INFO] IDs prêts dans download_youtube_playlist.txt
-[2025-12-02 09:14:01] [INFO] Processing: https://www.youtube.com/watch?v=m4EIGPHK-KQ
-[2025-12-02 09:20:26] [INFO] DOWNLOAD-ONLY: fichier téléchargé dans STAGING_DIR, aucun import lancé.
-[2025-12-02 09:20:26] [INFO] Processing: https://www.youtube.com/watch?v=J4qgLUsjZoE
-[2025-12-02 09:23:39] [INFO] DOWNLOAD-ONLY: fichier téléchargé dans STAGING_DIR, aucun import lancé.
-[2025-12-02 09:23:39] [INFO] Processing: https://www.youtube.com/watch?v=seXa0JEOklw
-[2025-12-02 09:25:51] [INFO] DOWNLOAD-ONLY: fichier téléchargé dans STAGING_DIR, aucun import lancé.
-[2025-12-02 09:25:51] [INFO] Processing: https://www.youtube.com/watch?v=vvDuQmaMqac
-[2025-12-02 09:32:23] [INFO] DOWNLOAD-ONLY: fichier téléchargé dans STAGING_DIR, aucun import lancé.
-[2025-12-02 09:32:23] [INFO] Processing: https://www.youtube.com/watch?v=CYW3qAtbiSg
-[2025-12-02 09:38:24] [INFO] DOWNLOAD-ONLY: fichier téléchargé dans STAGING_DIR, aucun import lancé.
-[2025-12-02 09:38:24] [INFO] === DONE ===
+[2025-12-04 15:09:51] [INFO] DOWNLOAD_ONLY=1 -> skip php/import.php preflight.
+[2025-12-04 15:09:51] [INFO] === AUDIOUS YT PLAYLIST DOWNLOAD ===
+[2025-12-04 15:09:51] [INFO] STAGING_DIR: /Users/zentoo/Sites/Audious/scan/staging
+[2025-12-04 15:09:51] [INFO] AUDIO_DIR  : /Users/zentoo/Desktop/music
+[2025-12-04 15:09:51] [INFO] Import PHP : /Users/zentoo/Sites/Audious/scan/import.php
+[2025-12-04 15:09:51] [INFO] DOWNLOAD_ONLY: 1
+[2025-12-04 15:09:51] [INFO] Aucune URL en quarantaine.
+[2025-12-04 15:09:51] [INFO] Fetching playlist: https://www.youtube.com/playlist?list=PLRNBxrpsyAbgjzesTeITdK_4SswRD1dTL
+[2025-12-04 15:09:55] [INFO] IDs prêts dans download_youtube_playlist.txt
+[2025-12-04 15:09:55] [INFO] Processing: https://www.youtube.com/watch?v=jM33LTNm4ug
+[2025-12-04 15:12:41] [INFO] DOWNLOAD-ONLY: fichier téléchargé dans STAGING_DIR, aucun import lancé.
+[2025-12-04 15:12:41] [INFO] Processing: https://www.youtube.com/watch?v=rVY7-2mupwM
+[2025-12-04 15:15:44] [INFO] DOWNLOAD-ONLY: fichier téléchargé dans STAGING_DIR, aucun import lancé.
+[2025-12-04 15:15:44] [INFO] === DONE ===
+
 ```
 
 ### B) Sync vers le serveur Audious (utile uniquement si vous avez téléchargé ailleurs)
@@ -296,36 +292,33 @@ zentoo@Mac scan % ./sync_to_server.sh
 Sortie (extrait) :
 
 ```text
-[2025-12-02 09:39:33] [INFO] LOCAL_ROOT        = /Users/zentoo/Sites/Audious
-[2025-12-02 09:39:33] [INFO] REMOTE_HOST       = ubuntu@audious.dev
-[2025-12-02 09:39:33] [INFO] REMOTE_ROOT       = /home/ubuntu/audious
-[2025-12-02 09:39:33] [INFO] REMOTE_SOURCE_DIR = /home/ubuntu/source
-[2025-12-02 09:39:33] [INFO] STAGING_DIR       = /Users/zentoo/Sites/Audious/scan/staging
-[2025-12-02 09:39:33] [INFO] PROCESSED_LOG     = /Users/zentoo/Sites/Audious/scan/download_youtube_playlist_processed.log
-[2025-12-02 09:39:33] [INFO] BLOCKED_LOG       = /Users/zentoo/Sites/Audious/scan/download_youtube_playlist_blocked.log
-[2025-12-02 09:39:33] [INFO] Sync fichiers d'état vers ubuntu@audious.dev:/home/ubuntu/audious/scan/
+[2025-12-04 15:16:25] [INFO] LOCAL_ROOT        = /Users/zentoo/Sites/Audious
+[2025-12-04 15:16:25] [INFO] REMOTE_HOST       = ubuntu@audious.dev
+[2025-12-04 15:16:25] [INFO] REMOTE_ROOT       = /home/ubuntu/audious
+[2025-12-04 15:16:25] [INFO] REMOTE_SOURCE_DIR = /home/ubuntu/source
+[2025-12-04 15:16:25] [INFO] STAGING_DIR       = /Users/zentoo/Sites/Audious/scan/staging
+[2025-12-04 15:16:25] [INFO] PROCESSED_LOG     = /Users/zentoo/Sites/Audious/scan/download_youtube_playlist_processed.log
+[2025-12-04 15:16:25] [INFO] BLOCKED_LOG       = /Users/zentoo/Sites/Audious/scan/download_youtube_playlist_blocked.log
+[2025-12-04 15:16:25] [INFO] Sync fichiers d'état vers ubuntu@audious.dev:/home/ubuntu/audious/scan/
+ubuntu@audious.dev's password: 
 Transfer starting: 2 files
 download_youtube_playlist_blocked.log
 download_youtube_playlist_processed.log
 
-sent 640 bytes  received 358 bytes  17789 bytes/sec
-total size is 34056  speedup is 34,12
-[2025-12-02 09:39:36] [INFO] Sync des fichiers audio :
-[2025-12-02 09:39:36] [INFO]   /Users/zentoo/Sites/Audious/scan/staging/ -> ubuntu@audious.dev:/home/ubuntu/source/
-Transfer starting: 8 files
+sent 664 bytes  received 358 bytes  35120 bytes/sec
+total size is 34144  speedup is 33,41
+[2025-12-04 15:16:29] [INFO] Sync des fichiers audio :
+[2025-12-04 15:16:29] [INFO]   /Users/zentoo/Sites/Audious/scan/staging/ -> ubuntu@audious.dev:/home/ubuntu/source/
+ubuntu@audious.dev's password: 
+Transfer starting: 3 files
 ./
-CYW3qAtbiSg.mp3
-J4qgLUsjZoE.mp3
-V9NhncU5_CE.mp3
-m4EIGPHK-KQ.mp3
-seXa0JEOklw.mp3
-uhhyQKNasXo.mp3
-vvDuQmaMqac.mp3
+jM33LTNm4ug.mp3
+rVY7-2mupwM.mp3
 
-sent 621831068 bytes  received 180 bytes  5053069 bytes/sec
-total size is 624573916  speedup is 1,00
-[2025-12-02 09:41:42] [INFO] Nettoyage des répertoires vides dans /Users/zentoo/Sites/Audious/scan/staging
-[2025-12-02 09:41:42] [INFO] Sync terminé.
+sent 131043238 bytes  received 70 bytes  4241007 bytes/sec
+total size is 131521277  speedup is 1,00
+[2025-12-04 15:17:03] [INFO] Nettoyage des répertoires vides dans /Users/zentoo/Sites/Audious/scan/staging
+[2025-12-04 15:17:03] [INFO] Sync terminé.
 ```
 
 ---
